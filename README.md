@@ -2,13 +2,15 @@
 
 Tor-ejector is an express middleware that reject request from tor.
 
+Demo [tor-ejector.herokuapp.com](https://tor-ejector.herokuapp.com/)
+
 ## Installation
 
 ```bash
 $ npm install ltempier/tor-ejector
 ```
 
-## API
+## Usage
 
 ```js
 var express = require('express');
