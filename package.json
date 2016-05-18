@@ -1,17 +1,20 @@
 {
   "name": "tor-ejector",
   "version": "0.0.1",
+  "description": "express middleware",
   "scripts": {
     "start": "node ./test/server.js",
     "prestart": "npm install express"
   },
-  "license": "MIT",
+  "author": "ltempier",
+  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git://github.com/ltempier/tor-ejector.git"
   },
    "keywords": [
     "tor",
+    "middleware",
     "security"
   ],
   "dependencies": {
