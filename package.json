@@ -1,8 +1,8 @@
 {
-  "name": "torejector",
+  "name": "tor-ejector",
   "version": "0.0.1",
   "scripts": {
-    "start": "node test/server.js",
+    "start": "node ./test/server.js",
     "heroku-prebuild": "npm install express"
   },
   "license": "MIT",
