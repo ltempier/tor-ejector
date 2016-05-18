@@ -10,6 +10,10 @@
     "type": "git",
     "url": "git://github.com/ltempier/tor-ejector.git"
   },
+   "keywords": [
+    "tor",
+    "security"
+  ],
   "dependencies": {
     "request": "^2.72.0"
   },
