@@ -1,7 +1,10 @@
 {
   "name": "torejector",
   "version": "0.0.1",
-  "scripts": {},
+  "scripts": {
+    "start": "node test/server.js",
+    "postinstall": "npm install"
+  },
   "license": "MIT",
   "dependencies": {
     "request": "^2.72.0"
