@@ -49,7 +49,7 @@ class TorAddresses {
         if (this.adresses && this.adresses.length)
             return this.adresses.indexOf(address);
         else {
-            console.warn('torejector Did not find TOR exit addresses');
+            console.warn('tor-ejector did not find TOR exit addresses');
             return -1
         }
     }
@@ -59,9 +59,10 @@ class TorAddresses {
 function torEjector(options) {
     var t = new TorAddresses(options);
     return function torEjector(req, res, next) {
-        if (t.indexOf(req.ip) > 0)
-            return res.status(401).send(options.message || 'Unauthorized');
-        next()
+        if (t.indexOf(req.ip) >= 0)
+            res.status(401).send(options.message || 'Unauthorized');
+        else
+            next()
     }
 }
 
