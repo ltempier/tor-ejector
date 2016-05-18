@@ -1,6 +1,6 @@
 {
   "name": "tor-ejector",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "express middleware",
   "scripts": {
     "start": "node ./test/server.js",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git://github.com/ltempier/tor-ejector.git"
   },
-   "keywords": [
+  "keywords": [
     "tor",
     "middleware",
     "security"
