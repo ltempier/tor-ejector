@@ -3,9 +3,13 @@
   "version": "0.0.1",
   "scripts": {
     "start": "node ./test/server.js",
-    "heroku-prebuild": "npm install express"
+    "prestart": "npm install express"
   },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ltempier/tor-ejector.git"
+  },
   "dependencies": {
     "request": "^2.72.0"
   },
