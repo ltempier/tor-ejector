@@ -7,10 +7,13 @@ const torEjector = require('..');
 
 var app = express();
 
-app.use(torEjector());
+app.use(torEjector({
+  timeInterval : 3*60*1000,
+  message : 'Sorry no TOR here'
+}));
 
 app.get('*', function (req, res) {
-    res.send('Hello World!');
+    res.status(200).send('Hello World!');
 });
 
 app.listen(process.env.PORT || 3000, function () {
