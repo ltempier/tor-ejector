@@ -59,6 +59,10 @@ class TorAddresses {
 function torEjector(options) {
     var t = new TorAddresses(options);
     return function torEjector(req, res, next) {
+
+        console.log(req.ip);
+        console.log(t.adresses)
+
         if (t.indexOf(req.ip) >= 0)
             res.status(401).send(options.message || 'Unauthorized');
         else
