@@ -1,6 +1,11 @@
-var express = require('express');
+'use strict'
+
+process.env.PORT = process.env.PORT || 3000
+
+const express = require('express');
+const torEjector = require('..');
+
 var app = express();
-var torEjector = require('..');
 
 app.use(torEjector());
 
@@ -8,6 +13,6 @@ app.get('*', function (req, res) {
     res.send('Hello World!');
 });
 
-app.listen(3000, "0.0.0.0", function () {
-    console.log('Example app listening on port 3000!');
+app.listen(process.env.PORT || 3000, function () {
+    console.log('Example app listening on port %s!', process.env.PORT);
 });
