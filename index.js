@@ -61,7 +61,7 @@ function torEjector(options) {
     return function torEjector(req, res, next) {
 
         console.log(req.ip);
-        console.log(t.adresses)
+        console.log(t.adresses.length)
 
         if (t.indexOf(req.ip) >= 0)
             res.status(401).send(options.message || 'Unauthorized');
