@@ -61,6 +61,7 @@ function torEjector(options) {
     return function torEjector(req, res, next) {
 
         console.log(req.ip);
+        console.log()
         console.log(t.adresses.length)
 
         if (t.indexOf(req.ip) >= 0)
