@@ -7,12 +7,14 @@ class TorAddresses {
         options = options || {};
 
         this.uri = "https://check.torproject.org/exit-addresses";
+        this.adresses = [];
         this.field = {
             name: 'ExitAddress',
             separator: ' ',
             position: 1
         };
         this.timeInterval = options.timeInterval || 30 * 60 * 1000;
+        
         this.start();
     }
 
@@ -24,12 +26,13 @@ class TorAddresses {
 
     parse(body) {
         var bufferArray = body.split('\n');
-        this.adresses = [];
+        var adresses = []
         bufferArray.forEach((row) => {
             var rowBuffer = row.split(this.field.separator);
             if (rowBuffer[0] == this.field.name)
-                this.adresses.push(rowBuffer[1])
+                adresses.push(rowBuffer[1])
         });
+        this.adresses = adresses;
     }
 
     start() {
