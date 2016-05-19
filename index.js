@@ -62,10 +62,6 @@ function torEjector(options) {
 
         var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
 
-        console.log(ip);
-        console.log()
-        console.log(t.adresses.length)
-
         if (t.indexOf(ip) >= 0)
             res.status(401).send(options.message || 'Unauthorized');
         else
