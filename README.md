@@ -25,7 +25,7 @@ app.use(torEjector());
 
 Name                   | Default         | Description
    --------------------|-----------------|---------
-   timeInterval        | 180000 | time interval between each update of TOR addresses
+   timeInterval        | 1800000 (30min) | time interval between each update of TOR addresses
    message | 'Unauthorized' | reply message at a request
 
 ## Example
