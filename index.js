@@ -12,7 +12,7 @@ class TorAddresses {
             separator: ' ',
             position: 1
         };
-        this.timeInterval = options.timeInterval || 3 * 60 * 1000;
+        this.timeInterval = options.timeInterval || 30 * 60 * 1000;
         this.start();
     }
 
