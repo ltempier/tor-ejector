@@ -7,12 +7,13 @@ class TorAddresses {
         options = options || {};
 
         this.uri = "https://check.torproject.org/exit-addresses";
+        this.adresses = [];
         this.field = {
             name: 'ExitAddress',
             separator: ' ',
             position: 1
         };
-        this.timeInterval = options.timeInterval || 3 * 60 * 1000;
+        this.timeInterval = options.timeInterval || 30 * 60 * 1000;
         this.start();
     }
 
@@ -23,14 +24,16 @@ class TorAddresses {
     }
 
     parse(body) {
-        var bufferArray = body.split('\n');
-        this.adresses = [];
+        var bufferArray = body.split('\n'),
+            adresses = [];
+
         bufferArray.forEach((row) => {
             var rowBuffer = row.split(this.field.separator);
             if (rowBuffer[0] == this.field.name)
                 if (rowBuffer[1] && this.isIpAddress(rowBuffer[1]))
-                    this.adresses.push(rowBuffer[1])
+                    adresses.push(rowBuffer[1])
         });
+        this.adresses = adresses
     }
 
     start() {
@@ -61,11 +64,10 @@ class TorAddresses {
     }
 }
 
-
 function torEjector(options) {
     var t = new TorAddresses(options);
     return function torEjector(req, res, next) {
-        var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+        var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         if (t.indexOf(ip) >= 0)
             res.status(401).send(options.message || 'Unauthorized');
         else
