@@ -10,7 +10,6 @@ Test url [tor-ejector.herokuapp.com](https://tor-ejector.herokuapp.com/)
 # create tor proxy with docker
 docker run -d -p 5566:5566 --env tors=25 mattes/rotating-proxy
 
-
 # test with ...
 curl https://tor-ejector.herokuapp.com
 curl --proxy 127.0.0.1:5566 https://tor-ejector.herokuapp.com
