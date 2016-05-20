@@ -2,12 +2,25 @@
 
 Tor-ejector is an express middleware that reject request from tor.
 
-Demo [tor-ejector.herokuapp.com](https://tor-ejector.herokuapp.com/)
+## Demo
+
+Test url [tor-ejector.herokuapp.com](https://tor-ejector.herokuapp.com/)
+
+```bash
+# create tor proxy with docker
+docker run -d -p 5566:5566 --env tors=25 mattes/rotating-proxy
+
+
+# test with ...
+curl https://tor-ejector.herokuapp.com
+curl --proxy 127.0.0.1:5566 https://tor-ejector.herokuapp.com
+
+```
 
 ## Installation
 
 ```bash
-$ npm install tor-ejector
+npm install tor-ejector
 ```
 
 ## Usage
@@ -35,7 +48,7 @@ var app = express();
 var torEjector = require('tor-ejector');
 
 app.use(torEjector({
-  timeInterval : 3*60*1000,
+  timeInterval : 30*60*1000,
   message : 'Sorry no TOR here'
 }));
 
