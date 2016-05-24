@@ -29,7 +29,7 @@ var TorAddresses = function () {
             var _this = this;
 
             request(this.uri, function (err, res, body) {
-                _this.parse(body);
+                if (!err && res.statusCode == 200) _this.parse(body);else setTimeout(_this.fetch.bind(_this), 10 * 1000);
             });
         }
     }, {
