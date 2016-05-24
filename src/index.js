@@ -19,7 +19,10 @@ class TorAddresses {
 
     fetch() {
         request(this.uri, (err, res, body) => {
-            this.parse(body)
+            if (!err && res.statusCode == 200)
+                this.parse(body);
+            else
+                setTimeout(this.fetch.bind(this), 10 * 1000)
         })
     }
 

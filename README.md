@@ -13,7 +13,6 @@ docker run -d -p 5566:5566 --env tors=25 mattes/rotating-proxy
 # test with ...
 curl https://tor-ejector.herokuapp.com
 curl --proxy 127.0.0.1:5566 https://tor-ejector.herokuapp.com
-
 ```
 
 ## Installation
@@ -30,7 +29,6 @@ var app = express();
 var torEjector = require('tor-ejector');
 
 app.use(torEjector());
-
 ```
 
 ## Options
