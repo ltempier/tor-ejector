@@ -11,14 +11,8 @@ var TorAddresses = function () {
         _classCallCheck(this, TorAddresses);
 
         options = options || {};
-
         this.uri = "https://check.torproject.org/exit-addresses";
         this.adresses = [];
-        this.field = {
-            name: 'ExitAddress',
-            separator: ' ',
-            position: 1
-        };
         this.timeInterval = options.timeInterval || 30 * 60 * 1000;
         this.start();
     }
@@ -37,12 +31,18 @@ var TorAddresses = function () {
         value: function parse(body) {
             var _this2 = this;
 
+            var field = {
+                name: 'ExitAddress',
+                separator: ' ',
+                position: 1
+            };
+
             var bufferArray = body.split('\n'),
                 adresses = [];
 
             bufferArray.forEach(function (row) {
-                var rowBuffer = row.split(_this2.field.separator);
-                if (rowBuffer[0] == _this2.field.name) if (rowBuffer[1] && _this2.isIpAddress(rowBuffer[1])) adresses.push(rowBuffer[1]);
+                var rowBuffer = row.split(field.separator);
+                if (rowBuffer[0] == field.name) if (rowBuffer[field.position] && _this2.isIpAddress(rowBuffer[field.position])) adresses.push(rowBuffer[field.position]);
             });
             this.adresses = adresses;
         }
@@ -63,7 +63,7 @@ var TorAddresses = function () {
         key: "indexOf",
         value: function indexOf(address) {
             if (this.adresses && this.adresses.length) return this.adresses.indexOf(address);else {
-                console.warn('tor-ejector did not find TOR exit addresses');
+                //console.warn('tor-ejector did not find TOR exit addresses');
                 return -1;
             }
         }

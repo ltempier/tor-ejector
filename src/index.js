@@ -5,14 +5,8 @@ const request = require("request");
 class TorAddresses {
     constructor(options) {
         options = options || {};
-
         this.uri = "https://check.torproject.org/exit-addresses";
         this.adresses = [];
-        this.field = {
-            name: 'ExitAddress',
-            separator: ' ',
-            position: 1
-        };
         this.timeInterval = options.timeInterval || 30 * 60 * 1000;
         this.start();
     }
@@ -27,16 +21,23 @@ class TorAddresses {
     }
 
     parse(body) {
+
+        const field = {
+            name: 'ExitAddress',
+            separator: ' ',
+            position: 1
+        };
+
         var bufferArray = body.split('\n'),
             adresses = [];
 
         bufferArray.forEach((row) => {
-            var rowBuffer = row.split(this.field.separator);
-            if (rowBuffer[0] == this.field.name)
-                if (rowBuffer[1] && this.isIpAddress(rowBuffer[1]))
-                    adresses.push(rowBuffer[1])
+            var rowBuffer = row.split(field.separator);
+            if (rowBuffer[0] == field.name)
+                if (rowBuffer[field.position] && this.isIpAddress(rowBuffer[field.position]))
+                    adresses.push(rowBuffer[field.position])
         });
-        this.adresses = adresses
+        this.adresses = adresses;
     }
 
     start() {
@@ -56,7 +57,7 @@ class TorAddresses {
         if (this.adresses && this.adresses.length)
             return this.adresses.indexOf(address);
         else {
-            console.warn('tor-ejector did not find TOR exit addresses');
+            //console.warn('tor-ejector did not find TOR exit addresses');
             return -1
         }
     }
